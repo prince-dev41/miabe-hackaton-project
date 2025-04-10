@@ -1,0 +1,166 @@
+Résumé des modèles de Telemed Api
+🧍‍♂️ Modèle User (Utilisateur)
+📄 Exemples de données JSON pour créer un utilisateur :
+json
+{
+  "username": "jean_patient",
+  "password": "secure123",
+  "email": "jean@example.com",
+  "is_patient": true,
+  "is_doctor": false
+}
+
+{
+  "username": "dr_sophie",
+  "password": "medic2025",
+  "email": "sophie@example.com",
+  "is_patient": false,
+  "is_doctor": true
+}
+
+📚 Explication :
+Ce modèle hérite de AbstractUser donc il possède déjà tous les champs classiques d’un utilisateur Django : username, password, email, etc.
+is_patient : ✅ permet d’identifier si un utilisateur est un patient.
+
+
+is_doctor : ✅ identifie s’il s’agit d’un médecin.
+
+
+Cela permet de gérer les droits ou l’interface selon le type d'utilisateur.
+
+
+
+Modèle Appointment (Rendez-vous)
+📄 Exemples de données JSON :
+json
+{
+  "patient": 1,
+  "doctor": 2,
+  "datetime": "2025-04-15T10:30:00Z",
+  "mode": "video",
+  "status": "pending"
+}
+
+json
+{
+  "patient": 3,
+  "doctor": 2,
+  "datetime": "2025-04-16T14:00:00Z",
+  "mode": "chat",
+  "status": "done"
+}
+
+📚 Explication :
+Un rendez-vous médical entre un patient et un médecin.
+patient : référence à un User (must have is_patient=True)
+
+
+doctor : référence à un User (must have is_doctor=True)
+
+
+datetime : date et heure du rendez-vous
+
+
+mode : type de consultation (video ou chat)
+
+
+status : état du rendez-vous (pending = en attente, done = terminé)
+
+
+
+🗂️ Modèle MedicalRecord
+📄 Exemples de données JSON :
+json
+{
+  "patient": 1,
+  "diagnosis": "Grippe saisonnière",
+  "treatment": "Repos, paracétamol, hydratation"
+}
+
+json
+{
+  "patient": 3,
+  "diagnosis": "Hypertension artérielle",
+  "treatment": "Régime pauvre en sel, médicaments antihypertenseurs"
+}
+
+Le champ file (fichier) sera envoyé via multipart/form-data, pas en JSON.
+📚 Explication :
+Un dossier médical lié à un patient.
+patient : à qui appartient le dossier
+
+
+created_at : date automatique de création
+
+
+diagnosis : le diagnostic posé par le médecin
+
+
+treatment : traitement prescrit
+
+
+file : un fichier médical (radio, ordonnance, PDF…)
+
+
+
+Modèle Reminder (Rappel)
+📄 Exemples de données JSON :
+json
+{
+  "patient": 1,
+  "message": "Prendre vos médicaments à 20h",
+  "date_time": "2025-04-15T20:00:00Z"
+}
+
+json
+{
+  "patient": 3,
+  "message": "Rendez-vous de suivi demain à 10h",
+  "date_time": "2025-04-14T10:00:00Z"
+}
+
+📚 Explication :
+Un rappel personnel pour un patient.
+patient : l'utilisateur concerné (doit être un patient)
+
+
+message : contenu du rappel
+
+
+date_time : moment où le rappel est censé apparaître/envoyé
+
+
+
+Modèle Feedback
+📄 Exemples de données JSON :
+json
+{
+  "patient": 1,
+  "doctor": 2,
+  "rating": 5,
+  "comment": "Excellent médecin, très à l'écoute."
+}
+
+json
+{
+  "patient": 3,
+  "doctor": 2,
+  "rating": 3,
+  "comment": "Bon diagnostic mais consultation un peu rapide."
+}
+
+📚 Explication :
+Permet aux patients de laisser une note et un commentaire sur un médecin.
+patient : celui qui donne l’avis (must be patient)
+
+
+doctor : cible de l’avis (must be doctor)
+
+
+rating : note (de 1 à 5)
+
+
+comment : texte libre
+
+
+

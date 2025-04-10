@@ -20,7 +20,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 
 // Import des assets
@@ -84,177 +83,214 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row-reverse items-center justify-between gap-8 max-w-6xl mx-auto">
-          {/* Illustration côté droit (visible uniquement sur les grands écrans) */}
-          <div className="hidden lg:block w-full lg:w-1/2">
-            <div className="p-6">
-              <img 
-                src={doctorIllustration} 
-                alt="Illustration de télémédecine" 
-                className="w-full h-auto max-w-xl mx-auto"
-              />
-              <div className="mt-8 text-center">
-                <h2 className="text-2xl font-bold text-gray-800">Rejoignez notre réseau médical</h2>
-                <p className="mt-2 text-gray-600 max-w-md mx-auto">
-                  Créez votre compte en quelques étapes simples et commencez à utiliser notre plateforme de télémédecine sécurisée.
-                </p>
-              </div>
-            </div>
+    <div className="min-h-screen flex bg-white">
+      {/* Partie gauche - Formulaire */}
+      <div className="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16 lg:px-24 py-8">
+        <div className="max-w-md mx-auto w-full">
+          {/* Logo */}
+          <div className="mb-8">
+            <img src={telemedLogo} alt="TeleMed Logo" className="h-10 w-auto" />
           </div>
           
-          {/* Formulaire d'inscription */}
-          <div className="w-full lg:w-1/2 max-w-md">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center mb-4">
-                <img src={telemedLogo} alt="TeleMed Logo" className="h-20 w-20" />
-              </div>
-              <h1 className="text-3xl font-bold text-gray-900">TeleMed</h1>
-              <p className="text-gray-600 mt-2">Plateforme de télémédecine pour professionnels de la santé</p>
-            </div>
-            
-            <Card className="border-none shadow-xl">
-              <CardHeader className="space-y-1">
-                <CardTitle className="text-2xl font-bold text-center">Créer un compte</CardTitle>
-                <CardDescription className="text-center">
-                  Remplissez le formulaire ci-dessous pour créer votre compte
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Nom complet</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Entrez votre nom complet" className="py-6" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="username"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Nom d'utilisateur</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Entrez un nom d'utilisateur" className="py-6" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="Entrez votre adresse email" className="py-6" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="password"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Mot de passe</FormLabel>
-                          <FormControl>
-                            <Input type="password" placeholder="Créez un mot de passe" className="py-6" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="userType"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Type d'utilisateur</FormLabel>
-                          <Select 
-                            onValueChange={field.onChange} 
-                            defaultValue={field.value}
-                          >
-                            <FormControl>
-                              <SelectTrigger className="py-6">
-                                <SelectValue placeholder="Sélectionnez un type d'utilisateur" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="doctor">Médecin</SelectItem>
-                              <SelectItem value="patient">Patient</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    {isDoctor && (
-                      <FormField
-                        control={form.control}
-                        name="specialty"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Spécialité</FormLabel>
-                            <Select 
-                              onValueChange={field.onChange} 
-                              defaultValue={field.value}
-                            >
-                              <FormControl>
-                                <SelectTrigger className="py-6">
-                                  <SelectValue placeholder="Sélectionnez votre spécialité" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="general">Médecine générale</SelectItem>
-                                <SelectItem value="cardiology">Cardiologie</SelectItem>
-                                <SelectItem value="dermatology">Dermatologie</SelectItem>
-                                <SelectItem value="neurology">Neurologie</SelectItem>
-                                <SelectItem value="pediatrics">Pédiatrie</SelectItem>
-                                <SelectItem value="other">Autre</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    )}
-                    
-                    <Button type="submit" className="w-full py-6 text-base mt-2" disabled={isLoading}>
-                      {isLoading ? "Inscription en cours..." : "S'inscrire"}
-                    </Button>
-                  </form>
-                </Form>
-              </CardContent>
-              <CardFooter>
-                <div className="text-sm text-center w-full">
-                  Vous avez déjà un compte?{" "}
-                  <a 
-                    onClick={() => navigate("/login")} 
-                    className="text-primary-600 hover:text-primary-700 cursor-pointer"
-                  >
-                    Se connecter
-                  </a>
-                </div>
-              </CardFooter>
-            </Card>
+          {/* Titre et description */}
+          <div className="mb-8">
+            <h1 className="text-2xl font-semibold text-gray-900 mb-2">Créer un compte</h1>
+            <p className="text-gray-600">
+              Inscrivez-vous pour accéder à notre plateforme de télémédecine et commencer à gérer vos patients et consultations.
+            </p>
           </div>
+          
+          {/* Formulaire */}
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <div className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-700">Nom complet</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="Entrez votre nom complet" 
+                          className="py-5 px-4 rounded-md border-gray-300" 
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-700">Nom d'utilisateur</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="Entrez un nom d'utilisateur" 
+                          className="py-5 px-4 rounded-md border-gray-300" 
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-700">Email</FormLabel>
+                      <FormControl>
+                        <Input 
+                          type="email" 
+                          placeholder="Entrez votre adresse email" 
+                          className="py-5 px-4 rounded-md border-gray-300" 
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-700">Mot de passe</FormLabel>
+                      <FormControl>
+                        <Input 
+                          type="password" 
+                          placeholder="Créez un mot de passe" 
+                          className="py-5 px-4 rounded-md border-gray-300" 
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="userType"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-700">Type d'utilisateur</FormLabel>
+                      <Select 
+                        onValueChange={field.onChange} 
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger className="py-5 px-4 rounded-md border-gray-300">
+                            <SelectValue placeholder="Sélectionnez un type d'utilisateur" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="doctor">Médecin</SelectItem>
+                          <SelectItem value="patient">Patient</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                {isDoctor && (
+                  <FormField
+                    control={form.control}
+                    name="specialty"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-700">Spécialité</FormLabel>
+                        <Select 
+                          onValueChange={field.onChange} 
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger className="py-5 px-4 rounded-md border-gray-300">
+                              <SelectValue placeholder="Sélectionnez votre spécialité" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="general">Médecine générale</SelectItem>
+                            <SelectItem value="cardiology">Cardiologie</SelectItem>
+                            <SelectItem value="dermatology">Dermatologie</SelectItem>
+                            <SelectItem value="neurology">Neurologie</SelectItem>
+                            <SelectItem value="pediatrics">Pédiatrie</SelectItem>
+                            <SelectItem value="other">Autre</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+              </div>
+              
+              <Button 
+                type="submit" 
+                className="w-full py-6 text-base font-medium bg-primary hover:bg-primary/90" 
+                disabled={isLoading}
+              >
+                {isLoading ? "Inscription en cours..." : "S'inscrire"}
+              </Button>
+              
+              <div className="text-sm text-center">
+                Vous avez déjà un compte ?{" "}
+                <a 
+                  onClick={() => navigate("/login")} 
+                  className="text-primary hover:text-primary/90 cursor-pointer"
+                >
+                  Se connecter
+                </a>
+              </div>
+            </form>
+          </Form>
+        </div>
+      </div>
+      
+      {/* Partie droite - Illustration */}
+      <div className="hidden md:flex md:w-1/2 bg-blue-50 flex-col justify-center relative">
+        <div className="p-12 max-w-lg mx-auto">
+          {/* Section descriptive */}
+          <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
+            <h2 className="text-xl font-medium text-gray-800 mb-4">Pourquoi rejoindre TeleMed ?</h2>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <svg className="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Gérez facilement vos rendez-vous médicaux</span>
+              </li>
+              <li className="flex items-start">
+                <svg className="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Accédez de manière sécurisée aux dossiers médicaux</span>
+              </li>
+              <li className="flex items-start">
+                <svg className="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Communiquez facilement avec vos patients</span>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Image d'illustration */}
+          <img 
+            src={doctorIllustration} 
+            alt="Illustration de télémédecine" 
+            className="w-full h-auto max-w-md mx-auto"
+          />
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export function Header({ pageTitle, onSidebarToggle }: HeaderProps) {
   return (
-    <header className="bg-white shadow-sm">
+    <header className="sticky-header">
       <div className="flex items-center justify-between p-4">
         <div className="flex items-center">
           <Button
@@ -20,7 +20,7 @@ export function Header({ pageTitle, onSidebarToggle }: HeaderProps) {
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle sidebar</span>
           </Button>
-          <h1 className="text-xl font-semibold capitalize">{pageTitle}</h1>
+          <h1 className="text-xl font-medium capitalize">{pageTitle}</h1>
         </div>
         <div className="flex items-center space-x-4">
           <Button variant="ghost" size="icon" className="relative">

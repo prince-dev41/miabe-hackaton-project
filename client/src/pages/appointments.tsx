@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Search, Plus, CalendarCheck, Check, X, Eye, Edit } from 'lucide-react';
+import { Search, Plus, CalendarCheck, X, Eye, Edit, User, UserRound, Video, MessageCircle } from 'lucide-react';
 import { AppointmentTable } from '@/components/dashboard/appointment-table';
 import { Pagination } from '@/components/ui/pagination';
 import { Button } from '@/components/ui/button';

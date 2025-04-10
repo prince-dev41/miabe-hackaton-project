@@ -15,53 +15,105 @@ import Reminders from "@/pages/reminders";
 import Login from "@/pages/login";
 import Register from "@/pages/register";
 
-// Protection de route pour les pages authentifiées
-function PrivateRoute({ component: Component, ...rest }: any) {
+// Composant protégé qui vérifie l'authentification
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAuth();
-  const [location] = useLocation();
+  const [, navigate] = useLocation();
   
   if (!isAuthenticated) {
-    return <Redirect to="/login" />;
+    navigate("/login");
+    return null;
   }
   
-  return <Component {...rest} />;
-}
+  return <>{children}</>;
+};
 
-// Redirection vers le dashboard si déjà connecté pour les pages non-auth
-function PublicRoute({ component: Component, ...rest }: any) {
+// Redirection automatique si déjà connecté
+const PublicOnlyRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAuth();
+  const [, navigate] = useLocation();
   
-  if (isAuthenticated && (rest.path === "/login" || rest.path === "/register")) {
-    return <Redirect to="/" />;
+  if (isAuthenticated) {
+    navigate("/");
+    return null;
   }
   
-  return <Component {...rest} />;
-}
+  return <>{children}</>;
+};
 
 function Router() {
   return (
     <Switch>
       <Route path="/login">
-        <PublicRoute component={Login} path="/login" />
-      </Route>
-      <Route path="/register">
-        <PublicRoute component={Register} path="/register" />
+        <PublicOnlyRoute>
+          <Login />
+        </PublicOnlyRoute>
       </Route>
       
-      {/* Routes protégées dans le layout principal */}
+      <Route path="/register">
+        <PublicOnlyRoute>
+          <Register />
+        </PublicOnlyRoute>
+      </Route>
+      
+      <Route path="/appointments">
+        <ProtectedRoute>
+          <MainLayout>
+            <Appointments />
+          </MainLayout>
+        </ProtectedRoute>
+      </Route>
+      
+      <Route path="/records">
+        <ProtectedRoute>
+          <MainLayout>
+            <Records />
+          </MainLayout>
+        </ProtectedRoute>
+      </Route>
+      
+      <Route path="/patients">
+        <ProtectedRoute>
+          <MainLayout>
+            <Patients />
+          </MainLayout>
+        </ProtectedRoute>
+      </Route>
+      
+      <Route path="/doctors">
+        <ProtectedRoute>
+          <MainLayout>
+            <Doctors />
+          </MainLayout>
+        </ProtectedRoute>
+      </Route>
+      
+      <Route path="/feedback">
+        <ProtectedRoute>
+          <MainLayout>
+            <Feedback />
+          </MainLayout>
+        </ProtectedRoute>
+      </Route>
+      
+      <Route path="/reminders">
+        <ProtectedRoute>
+          <MainLayout>
+            <Reminders />
+          </MainLayout>
+        </ProtectedRoute>
+      </Route>
+      
       <Route path="/">
-        <MainLayout>
-          <Switch>
-            <Route path="/" component={() => <PrivateRoute component={Dashboard} />} />
-            <Route path="/appointments" component={() => <PrivateRoute component={Appointments} />} />
-            <Route path="/records" component={() => <PrivateRoute component={Records} />} />
-            <Route path="/patients" component={() => <PrivateRoute component={Patients} />} />
-            <Route path="/doctors" component={() => <PrivateRoute component={Doctors} />} />
-            <Route path="/feedback" component={() => <PrivateRoute component={Feedback} />} />
-            <Route path="/reminders" component={() => <PrivateRoute component={Reminders} />} />
-            <Route component={NotFound} />
-          </Switch>
-        </MainLayout>
+        <ProtectedRoute>
+          <MainLayout>
+            <Dashboard />
+          </MainLayout>
+        </ProtectedRoute>
+      </Route>
+      
+      <Route>
+        <NotFound />
       </Route>
     </Switch>
   );

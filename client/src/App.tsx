@@ -12,6 +12,7 @@ import Patients from "@/pages/patients";
 import Doctors from "@/pages/doctors";
 import Feedback from "@/pages/feedback";
 import Reminders from "@/pages/reminders";
+import Settings from "@/pages/settings";
 import Login from "@/pages/login";
 import Register from "@/pages/register";
 
@@ -100,6 +101,14 @@ function Router() {
         <ProtectedRoute>
           <MainLayout>
             <Reminders />
+          </MainLayout>
+        </ProtectedRoute>
+      </Route>
+      
+      <Route path="/settings">
+        <ProtectedRoute>
+          <MainLayout>
+            <Settings />
           </MainLayout>
         </ProtectedRoute>
       </Route>

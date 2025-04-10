@@ -11,7 +11,9 @@ import {
   Bell, 
   Heart, 
   X,
-  Menu
+  Menu,
+  Settings,
+  LogOut
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -71,6 +73,12 @@ const navItems: NavItem[] = [
     title: "Rappels",
     path: "/reminders",
     icon: Bell,
+    role: 'all'
+  },
+  {
+    title: "Paramètres",
+    path: "/settings",
+    icon: Settings,
     role: 'all'
   }
 ];
@@ -181,9 +189,10 @@ export function Sidebar({ isMobile, isOpen, onToggle }: SidebarProps) {
           </div>
           <Button
             variant="outline"
-            className="w-full mt-3 text-white border-gray-700 hover:text-white hover:bg-gray-800"
+            className="w-full mt-3 text-white border-gray-700 hover:text-white hover:bg-gray-800 flex items-center justify-center gap-2"
             onClick={handleLogout}
           >
+            <LogOut className="h-4 w-4" />
             Déconnexion
           </Button>
         </div>

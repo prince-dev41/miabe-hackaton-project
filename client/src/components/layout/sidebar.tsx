@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { 
   LucideIcon, 
@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/auth-context";
 
 interface SidebarProps {
   isMobile: boolean;
@@ -26,53 +27,58 @@ interface NavItem {
   title: string;
   path: string;
   icon: LucideIcon;
+  role?: 'doctor' | 'patient' | 'all';
 }
 
 const navItems: NavItem[] = [
   {
-    title: "Dashboard",
+    title: "Tableau de bord",
     path: "/",
-    icon: BarChart2
+    icon: BarChart2,
+    role: 'all'
   },
   {
-    title: "Appointments",
+    title: "Rendez-vous",
     path: "/appointments",
-    icon: CalendarCheck
+    icon: CalendarCheck,
+    role: 'all'
   },
   {
-    title: "Medical Records",
+    title: "Dossiers médicaux",
     path: "/records",
-    icon: FileText
+    icon: FileText,
+    role: 'all'
   },
   {
-    title: "Patients",
+    title: "Mes patients",
     path: "/patients",
-    icon: User
+    icon: User,
+    role: 'doctor'
   },
   {
-    title: "Doctors",
+    title: "Médecins",
     path: "/doctors",
-    icon: UserRound
+    icon: UserRound,
+    role: 'patient'
   },
   {
-    title: "Feedback",
+    title: "Retours & Avis",
     path: "/feedback",
-    icon: Star
+    icon: Star,
+    role: 'all'
   },
   {
-    title: "Reminders",
+    title: "Rappels",
     path: "/reminders",
-    icon: Bell
+    icon: Bell,
+    role: 'all'
   }
 ];
 
 export function Sidebar({ isMobile, isOpen, onToggle }: SidebarProps) {
   const [location] = useLocation();
   const { toast } = useToast();
-  const [user, setUser] = useState({
-    name: "Admin User",
-    email: "admin@telemed.com"
-  });
+  const { user, logout } = useAuth();
 
   // Close sidebar when clicking outside on mobile
   useEffect(() => {
@@ -89,9 +95,10 @@ export function Sidebar({ isMobile, isOpen, onToggle }: SidebarProps) {
   }, [isMobile, isOpen, onToggle]);
 
   const handleLogout = () => {
+    logout();
     toast({
-      title: "Logged out",
-      description: "You have been successfully logged out."
+      title: "Déconnexion réussie",
+      description: "Vous avez été déconnecté avec succès."
     });
   };
 
@@ -141,22 +148,24 @@ export function Sidebar({ isMobile, isOpen, onToggle }: SidebarProps) {
         {/* Navigation Menu */}
         <nav className="mt-4">
           <ul>
-            {navItems.map((item) => (
-              <li key={item.path} className="px-4 py-2">
-                <Link href={item.path}>
-                  <a
-                    className={`flex items-center space-x-3 p-2 rounded-md transition-colors ${
-                      location === item.path
-                        ? "bg-primary-600 text-white"
-                        : "text-gray-100 hover:bg-gray-800 hover:text-white"
-                    }`}
-                  >
-                    <item.icon className="h-5 w-5" />
-                    <span>{item.title}</span>
-                  </a>
-                </Link>
-              </li>
-            ))}
+            {navItems
+              .filter(item => item.role === 'all' || item.role === user?.userType)
+              .map((item) => (
+                <li key={item.path} className="px-4 py-2">
+                  <Link href={item.path}>
+                    <a
+                      className={`flex items-center space-x-3 p-2 rounded-md transition-colors ${
+                        location === item.path
+                          ? "bg-primary-600 text-white"
+                          : "text-gray-100 hover:bg-gray-800 hover:text-white"
+                      }`}
+                    >
+                      <item.icon className="h-5 w-5" />
+                      <span>{item.title}</span>
+                    </a>
+                  </Link>
+                </li>
+              ))}
           </ul>
         </nav>
 
@@ -167,8 +176,8 @@ export function Sidebar({ isMobile, isOpen, onToggle }: SidebarProps) {
               <User className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-sm font-medium text-white">{user.name}</p>
-              <p className="text-xs text-gray-300">{user.email}</p>
+              <p className="text-sm font-medium text-white">{user?.name || 'Médecin'}</p>
+              <p className="text-xs text-gray-300">{user?.email || 'medecin@telemed.com'}</p>
             </div>
           </div>
           <Button
@@ -176,7 +185,7 @@ export function Sidebar({ isMobile, isOpen, onToggle }: SidebarProps) {
             className="w-full mt-3 text-white border-gray-700 hover:text-white hover:bg-gray-800"
             onClick={handleLogout}
           >
-            Logout
+            Déconnexion
           </Button>
         </div>
       </aside>

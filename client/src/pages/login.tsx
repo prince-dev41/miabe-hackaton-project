@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/auth-context";
 import { Heart } from "lucide-react";
 
 const loginSchema = z.object({
@@ -27,6 +28,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 export default function Login() {
   const [, navigate] = useLocation();
   const { toast } = useToast();
+  const { login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<LoginFormValues>({
@@ -41,14 +43,14 @@ export default function Login() {
     setIsLoading(true);
     
     try {
-      // Simulation d'un appel API de connexion
-      setTimeout(() => {
-        toast({
-          title: "Connexion réussie",
-          description: "Vous êtes maintenant connecté."
-        });
-        navigate("/");
-      }, 1000);
+      // Appel de la fonction de connexion du contexte d'authentification
+      await login(data.username, data.password);
+      
+      toast({
+        title: "Connexion réussie",
+        description: "Bienvenue sur votre tableau de bord médical."
+      });
+      navigate("/");
     } catch (error) {
       toast({
         title: "Erreur de connexion",

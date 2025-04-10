@@ -152,17 +152,16 @@ export function Sidebar({ isMobile, isOpen, onToggle }: SidebarProps) {
               .filter(item => item.role === 'all' || item.role === user?.userType)
               .map((item) => (
                 <li key={item.path} className="px-4 py-2">
-                  <Link href={item.path}>
-                    <a
-                      className={`flex items-center space-x-3 p-2 rounded-md transition-colors ${
-                        location === item.path
-                          ? "bg-primary-600 text-white"
-                          : "text-gray-100 hover:bg-gray-800 hover:text-white"
-                      }`}
-                    >
-                      <item.icon className="h-5 w-5" />
-                      <span>{item.title}</span>
-                    </a>
+                  <Link 
+                    href={item.path}
+                    className={`flex items-center space-x-3 p-2 rounded-md transition-colors ${
+                      location === item.path
+                        ? "bg-primary-600 text-white"
+                        : "text-gray-100 hover:bg-gray-800 hover:text-white"
+                    }`}
+                  >
+                    <item.icon className="h-5 w-5" />
+                    <span>{item.title}</span>
                   </Link>
                 </li>
               ))}

@@ -103,7 +103,7 @@ export function AppointmentTable({
       <div className="p-4 border-b border-gray-200">
         <h2 className="font-semibold text-lg flex items-center">
           <CalendarCheck className="h-5 w-5 mr-2 text-blue-500" />
-          Recent Appointments
+          Les RDV récents
         </h2>
       </div>
       <div className="overflow-x-auto">
@@ -111,7 +111,7 @@ export function AppointmentTable({
           <TableHeader className="bg-gray-50">
             <TableRow>
               <TableHead>Patient</TableHead>
-              <TableHead>Doctor</TableHead>
+              <TableHead>Docteur</TableHead>
               <TableHead>Date</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Mode</TableHead>
@@ -135,7 +135,7 @@ export function AppointmentTable({
             ) : (
               <TableRow>
                 <TableCell colSpan={5} className="h-24 text-center">
-                  No appointments found
+                  Aucun rendez-vous trouvé.
                 </TableCell>
               </TableRow>
             )}
@@ -145,7 +145,7 @@ export function AppointmentTable({
       {showViewAll && (
         <div className="p-4 border-t border-gray-200 text-right">
           <Link to="/appointments" className="text-blue-600 hover:text-blue-800 text-sm font-medium inline-flex items-center">
-            View all appointments
+            Voir tous
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 ml-1"

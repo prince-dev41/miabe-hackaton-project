@@ -15,15 +15,14 @@ import { Pagination } from '@/components/ui/pagination';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { insertReminderSchema } from '@shared/schema';
 
 // Extended schema with validation
-const reminderFormSchema = insertReminderSchema.extend({
+const reminderFormSchema = {
   message: z.string().min(5, "Message must be at least 5 characters"),
   date_time: z.string().refine(val => !isNaN(Date.parse(val)), {
     message: "Please enter a valid date and time"
   })
-});
+};
 
 type ReminderFormValues = z.infer<typeof reminderFormSchema>;
 

@@ -25,7 +25,7 @@ export default function Appointments() {
 
   // Fetch appointments
   const { data: appointments, isLoading } = useQuery({
-    queryKey: ['/api/appointments', statusFilter],
+    queryKey: ['https://telemed-api-p8fx.onrender.com/api/appointments/?format=json', statusFilter],
     queryFn: () => fetchAppointments(statusFilter)
   });
 

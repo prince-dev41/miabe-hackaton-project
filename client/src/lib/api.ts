@@ -9,7 +9,7 @@ import {
 } from '@shared/schema';
 
 // API base URL
-const API_BASE_URL = '/api';
+const API_BASE_URL = 'https://telemed-api-p8fx.onrender.com/api';
 
 // Stats dashboard data
 export interface DashboardStats {
@@ -39,7 +39,7 @@ export const fetchDoctors = async (): Promise<User[]> => {
 // Appointments API
 export const fetchAppointments = async (status?: string): Promise<Appointment[]> => {
   const url = status 
-    ? `${API_BASE_URL}/appointments/?status=${status}` 
+    ? `${API_BASE_URL}/appointments/` 
     : `${API_BASE_URL}/appointments/`;
   const response = await apiRequest('GET', url);
   return response.json();

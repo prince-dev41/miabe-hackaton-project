@@ -53,7 +53,7 @@ export default function Feedback() {
         <CardHeader className="border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center">
           <CardTitle className="flex items-center">
             <Star className="h-5 w-5 mr-2 text-yellow-500" />
-            Feedback System
+            Feedbacks
           </CardTitle>
           <div className="mt-3 sm:mt-0 flex items-center space-x-2">
             <div className="relative">
@@ -78,7 +78,7 @@ export default function Feedback() {
               className="cursor-pointer px-3 py-1"
               onClick={() => setFilterRating(null)}
             >
-              All Ratings
+              Tout
             </Badge>
             {[5, 4, 3, 2, 1].map(rating => (
               <Badge
@@ -170,7 +170,7 @@ export default function Feedback() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Rating Distribution</CardTitle>
+            <CardTitle>Distribution</CardTitle>
           </CardHeader>
           <CardContent className="p-4">
             <div className="space-y-4">
@@ -209,7 +209,7 @@ export default function Feedback() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Top Rated Doctors</CardTitle>
+            <CardTitle>Docteurs mieux notés</CardTitle>
           </CardHeader>
           <CardContent className="p-4">
             {feedbacks ? (

@@ -64,7 +64,7 @@ export function ReminderList({
       <div className="p-4 border-b border-gray-200">
         <h2 className="font-semibold text-lg flex items-center">
           <Bell className="h-5 w-5 mr-2 text-yellow-500" />
-          Upcoming Reminders
+          Rappels à venir
         </h2>
       </div>
       <div className="p-4">
@@ -84,14 +84,14 @@ export function ReminderList({
           ))
         ) : (
           <div className="text-center py-6 text-gray-500">
-            No upcoming reminders
+            Aucun rappel à venir.
           </div>
         )}
       </div>
       {showViewAll && (
         <div className="p-4 border-t border-gray-200 text-right">
           <Link to="/reminders" className="text-blue-600 hover:text-blue-800 text-sm font-medium inline-flex items-center">
-            Manage all reminders
+            Gérer tous les rappels
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 ml-1"

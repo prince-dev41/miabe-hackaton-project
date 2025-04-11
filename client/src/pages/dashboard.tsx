@@ -28,7 +28,7 @@ export default function Dashboard() {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <StatsCard
-          title="Total Appointments"
+          title="Total RDV"
           value={isLoadingStats ? '...' : stats?.totalAppointments || 0}
           icon={<Calendar className="h-5 w-5 text-blue-600" />}
           iconBgColor="bg-blue-100"
@@ -36,7 +36,7 @@ export default function Dashboard() {
         />
         
         <StatsCard
-          title="Active Patients"
+          title="Patients Actives"
           value={isLoadingStats ? '...' : stats?.activePatients || 0}
           icon={<User className="h-5 w-5 text-green-600" />}
           iconBgColor="bg-green-100"
@@ -44,7 +44,7 @@ export default function Dashboard() {
         />
         
         <StatsCard
-          title="Active Doctors"
+          title="Docteurs Actives"
           value={isLoadingStats ? '...' : stats?.activeDoctors || 0}
           icon={<UserRound className="h-5 w-5 text-indigo-600" />}
           iconBgColor="bg-indigo-100"
@@ -52,7 +52,7 @@ export default function Dashboard() {
         />
         
         <StatsCard
-          title="Avg. Rating"
+          title="Moyenne des notes"
           value={isLoadingStats ? '...' : stats?.avgRating || 0}
           icon={<Star className="h-5 w-5 text-yellow-600" />}
           iconBgColor="bg-yellow-100"

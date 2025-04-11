@@ -34,7 +34,7 @@ export default function Patients() {
           <CardHeader className="border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center">
             <CardTitle className="flex items-center">
               <User className="h-5 w-5 mr-2 text-blue-500" />
-              Patient Directory
+              Patients
             </CardTitle>
             <div className="mt-3 sm:mt-0 flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2">
               <div className="relative">
@@ -50,7 +50,7 @@ export default function Patients() {
                 </div>
               </div>
               <Button className="w-full sm:w-auto">
-                <Plus className="h-4 w-4 mr-2" /> Add Patient
+                <Plus className="h-4 w-4 mr-2" /> Ajouter un patient
               </Button>
             </div>
           </CardHeader>
@@ -67,10 +67,10 @@ export default function Patients() {
                       Email
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Records
+                      Dossier
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Last Appointment
+                      Dernier RDV
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Status
@@ -133,7 +133,7 @@ export default function Patients() {
                   ) : (
                     <tr>
                       <td colSpan={6} className="px-6 py-4 text-center text-sm text-gray-500">
-                        No patients found
+                        Aucun patient trouvé
                       </td>
                     </tr>
                   )}
@@ -149,12 +149,12 @@ export default function Patients() {
           <CardHeader className="border-b border-gray-200">
             <CardTitle className="flex items-center">
               <BarChart className="h-5 w-5 mr-2 text-blue-500" />
-              Patient Statistics
+              Statistiques
             </CardTitle>
           </CardHeader>
           <CardContent className="p-4">
             <div className="mb-4">
-              <h3 className="text-sm font-medium text-gray-500 mb-2">Patients by Age Group</h3>
+              <h3 className="text-sm font-medium text-gray-500 mb-2">Patients par groupe d'age</h3>
               <div className="h-48 bg-gray-50 rounded-md p-4 flex items-end space-x-2">
                 <div className="flex-1 flex flex-col items-center">
                   <div className="bg-blue-500 w-full rounded-t-md" style={{ height: '30%' }}></div>
@@ -180,10 +180,10 @@ export default function Patients() {
             </div>
             
             <div>
-              <h3 className="text-sm font-medium text-gray-500 mb-2">Active vs. Inactive Patients</h3>
+              <h3 className="text-sm font-medium text-gray-500 mb-2">Actifs vs. Patients inactifs</h3>
               <div className="bg-gray-50 rounded-md p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-medium">Active</span>
+                  <span className="text-xs font-medium">Actifs</span>
                   <span className="text-xs font-medium">85%</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2.5">
@@ -191,7 +191,7 @@ export default function Patients() {
                 </div>
                 
                 <div className="flex items-center justify-between mb-2 mt-4">
-                  <span className="text-xs font-medium">Inactive</span>
+                  <span className="text-xs font-medium">Inactifs</span>
                   <span className="text-xs font-medium">15%</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2.5">

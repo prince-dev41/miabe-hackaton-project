@@ -196,7 +196,7 @@ export function Sidebar({ isMobile, isOpen, onToggle }: SidebarProps) {
           </div>
           <Button
             variant="outline"
-            className="w-full mt-3 text-white border-gray-700 hover:text-white hover:bg-gray-800 flex items-center justify-center gap-2"
+            className="w-full mt-3 border-gray-700 text-white bg-gray-800 flex items-center justify-center gap-2"
             onClick={handleLogout}
           >
             <LogOut className="h-4 w-4" />

@@ -1,5 +1,6 @@
 import { Bell, Settings, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 interface HeaderProps {
   pageTitle: string;
@@ -27,9 +28,11 @@ export function Header({ pageTitle, onSidebarToggle }: HeaderProps) {
             <Bell className="h-5 w-5" />
             <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
           </Button>
-          <Button variant="ghost" size="icon">
-            <Settings className="h-5 w-5" />
-          </Button>
+          <Link href="/settings">
+            <Button variant="ghost" size="icon">
+                <Settings className="h-5 w-5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </header>

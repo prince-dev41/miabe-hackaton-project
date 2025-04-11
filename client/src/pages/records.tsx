@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Search, Plus, FileText, Edit, Trash, Eye, File } from 'lucide-react';
+import { Search, Plus, FileText, Edit, Trash, Eye, File, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -46,13 +46,13 @@ export default function Records() {
       <CardHeader className="border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center">
         <CardTitle className="flex items-center">
           <FileText className="h-5 w-5 mr-2 text-blue-500" />
-          Medical Records
+          Dossiers Médicaux
         </CardTitle>
         <div className="mt-3 sm:mt-0 flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2">
           <div className="relative">
             <Input
               type="text"
-              placeholder="Search records..."
+              placeholder="Rechercher..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
@@ -62,7 +62,7 @@ export default function Records() {
             </div>
           </div>
           <Button className="w-full sm:w-auto">
-            <Plus className="h-4 w-4 mr-2" /> New Record
+            <Plus className="h-4 w-4 mr-2" /> Nouveau dossier
           </Button>
         </div>
       </CardHeader>
@@ -79,16 +79,16 @@ export default function Records() {
                   Patient
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Created Date
+                  Date de création
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Diagnosis
+                  Diagnostic
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Treatment
+                  Traitement
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Files
+                  Fichiers
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
@@ -115,7 +115,7 @@ export default function Records() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
-                          <User className="h-5 w-5" />
+                          <User className="h-5 w-5 text-gray-500" />
                         </div>
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">

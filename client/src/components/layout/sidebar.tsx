@@ -13,7 +13,8 @@ import {
   X,
   Menu,
   Settings,
-  LogOut
+  LogOut,
+  FileSpreadsheet
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -73,6 +74,12 @@ const navItems: NavItem[] = [
     title: "Rappels",
     path: "/reminders",
     icon: Bell,
+    role: 'all'
+  },
+  {
+    title: "Rapports",
+    path: "/reports",
+    icon: FileSpreadsheet,
     role: 'all'
   },
   {
